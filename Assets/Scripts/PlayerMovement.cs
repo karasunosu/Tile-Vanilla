@@ -17,8 +17,11 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
 
     float baseGravity;
+
+    // Animation
     bool isRunning;
     bool isClimbing;
+    bool isFalling = false;
     
     void Start()
     {
@@ -35,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         Run();
         FlipSprite();
         Climb();
+        CheckAirState();
         AnimationTransition();
     }
 
@@ -62,12 +66,23 @@ public class PlayerMovement : MonoBehaviour
     // Jump
     void OnJump(InputValue value)
     {
-        if(!feetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
+        if(!feetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { 
+            return; 
+        }
 
         if (value.isPressed)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpSpeed * Time.fixedDeltaTime);
+            animator.SetTrigger("jump");
         }
+    }
+
+    void CheckAirState()
+    {
+        bool isGround = feetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"));
+        float vy = rb.linearVelocityY;
+  
+        isFalling = !isGround && !isClimbing && vy < Mathf.Epsilon;
     }
 
     // Climb
@@ -79,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
             isClimbing = false;
             return;
         }
-        
+
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(rb.linearVelocityX, moveInput.y * climbSpeed * Time.fixedDeltaTime);
 
@@ -91,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator.SetBool("isRunning", isRunning);
         animator.SetBool("isClimbing", isClimbing);
+        animator.SetBool("isFalling", isFalling); 
     }
 
     // Getter & Setter
