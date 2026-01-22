@@ -8,24 +8,31 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float jumpSpeed = 10f;
+    [SerializeField] float climbSpeed = 10f;
 
     Vector2 moveInput;
     Rigidbody2D rb;
     BoxCollider2D feetCollider;
+    CapsuleCollider2D bodyCollider;
+
+    float baseGravity;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         feetCollider = GetComponent<BoxCollider2D>();
+        bodyCollider = GetComponent<CapsuleCollider2D>();
+        baseGravity = rb.gravityScale;
     }
 
-    
     void Update()
     {
         Run();
         FlipSprite();
+        Climb();
     }
 
+    // Move
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
@@ -46,13 +53,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    // Jump
     void OnJump(InputValue value)
     {
-        if(!feetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { ;return; }
+        if(!feetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { return; }
 
         if (value.isPressed)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocityX, jumpSpeed * Time.fixedDeltaTime);
         }
+    }
+
+    // Climb
+    void Climb()
+    {
+        if(!bodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) {
+            rb.gravityScale = baseGravity;
+            return; 
+        }
+
+        rb.gravityScale = 0;
+        rb.linearVelocity = new Vector2(rb.linearVelocityX, moveInput.y * climbSpeed * Time.fixedDeltaTime);
     }
 }
