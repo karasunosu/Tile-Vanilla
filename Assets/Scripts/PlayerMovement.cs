@@ -14,8 +14,11 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D feetCollider;
     CapsuleCollider2D bodyCollider;
+    Animator animator;
 
     float baseGravity;
+    bool isRunning;
+    bool isClimbing;
     
     void Start()
     {
@@ -23,6 +26,8 @@ public class PlayerMovement : MonoBehaviour
         feetCollider = GetComponent<BoxCollider2D>();
         bodyCollider = GetComponent<CapsuleCollider2D>();
         baseGravity = rb.gravityScale;
+
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -30,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         Run();
         FlipSprite();
         Climb();
+        AnimationTransition();
     }
 
     // Move
@@ -41,12 +47,12 @@ public class PlayerMovement : MonoBehaviour
     void Run()
     {
         rb.linearVelocity = new Vector2(moveInput.x * moveSpeed * Time.fixedDeltaTime, rb.linearVelocityY);
-        
     }
 
     void FlipSprite()
     {
         bool hasHorizontalSpeed = Mathf.Abs(rb.linearVelocityX) > Mathf.Epsilon;
+        isRunning = hasHorizontalSpeed;
         if (hasHorizontalSpeed)
         {
             transform.localScale = new Vector2(Mathf.Sign(rb.linearVelocityX), transform.localScale.y);
@@ -67,12 +73,25 @@ public class PlayerMovement : MonoBehaviour
     // Climb
     void Climb()
     {
-        if(!bodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder"))) {
+        if (!bodyCollider.IsTouchingLayers(LayerMask.GetMask("Ladder")))
+        {
             rb.gravityScale = baseGravity;
-            return; 
+            isClimbing = false;
+            return;
         }
-
+        
         rb.gravityScale = 0;
         rb.linearVelocity = new Vector2(rb.linearVelocityX, moveInput.y * climbSpeed * Time.fixedDeltaTime);
+
+        isClimbing = Mathf.Abs(rb.linearVelocityY) > Mathf.Epsilon;
     }
+
+    // Animation
+    void AnimationTransition()
+    {
+        animator.SetBool("isRunning", isRunning);
+        animator.SetBool("isClimbing", isClimbing);
+    }
+
+    // Getter & Setter
 }

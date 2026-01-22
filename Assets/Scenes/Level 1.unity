@@ -325,7 +325,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2, y: -2.19, z: -10}
+  m_LocalPosition: {x: -5.0536013, y: -1.44998, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -783,7 +783,7 @@ Transform:
   m_GameObject: {fileID: 1165534948}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.6912003, y: -2.74608, z: -10}
+  m_LocalPosition: {x: 2.7512002, y: -2.0060802, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10223,11 +10223,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2100887672901912609, guid: 7f7cf61d2fefcb84880d73994fe85a97, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2
+      value: -5.14
       objectReference: {fileID: 0}
     - target: {fileID: 2100887672901912609, guid: 7f7cf61d2fefcb84880d73994fe85a97, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.19
+      value: -1.45
       objectReference: {fileID: 0}
     - target: {fileID: 2100887672901912609, guid: 7f7cf61d2fefcb84880d73994fe85a97, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10261,15 +10261,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3153594627878118241, guid: 7f7cf61d2fefcb84880d73994fe85a97, type: 3}
-      propertyPath: climbSpeed
-      value: 300
-      objectReference: {fileID: 0}
     - target: {fileID: 7257400015836794300, guid: 7f7cf61d2fefcb84880d73994fe85a97, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1809330201055819173, guid: 7f7cf61d2fefcb84880d73994fe85a97, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
