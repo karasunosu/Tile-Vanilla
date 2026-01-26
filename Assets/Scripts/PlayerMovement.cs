@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     Animator animator;
 
     float baseGravity;
+    bool isDead;
 
     // Animation
     bool isRunning;
@@ -45,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
     // Move
     void OnMove(InputValue value)
     {
+        if(isDead) { return; }
+
         moveInput = value.Get<Vector2>();
     }
 
@@ -66,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
     // Jump
     void OnJump(InputValue value)
     {
+        if(isDead) { return; }
+        
         if(!feetCollider.IsTouchingLayers(LayerMask.GetMask("Platform"))) { 
             return; 
         }
@@ -110,4 +115,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Getter & Setter
+    public void setDead(bool state)
+    {
+        isDead = state;
+    }
+
+    public CapsuleCollider2D getBodyCollider()
+    {
+        return bodyCollider;
+    }
 }
