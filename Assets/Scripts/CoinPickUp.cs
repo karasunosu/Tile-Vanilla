@@ -3,6 +3,7 @@ using UnityEngine;
 public class CoinPickUp : MonoBehaviour
 {
     [SerializeField] AudioClip audioClip;
+    [SerializeField] int score = 100;
 
     bool isPicked;
 
@@ -12,6 +13,7 @@ public class CoinPickUp : MonoBehaviour
         {
             isPicked = true;
             AudioSource.PlayClipAtPoint(audioClip, gameObject.transform.position);
+            FindFirstObjectByType<GameSession>().AddScore(score);
             Destroy(gameObject);
         }
     }

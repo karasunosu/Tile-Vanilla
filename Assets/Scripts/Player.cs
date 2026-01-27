@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -32,7 +34,15 @@ public class Player : MonoBehaviour
             player.setDead(true);
             animator.SetTrigger("Die");
             rb.linearVelocity = new Vector2(horizontalFlySpeed * time, verticalFlySpeed * time);
+            
+            StartCoroutine(TakePlayerLive());
         }
     }
 
+    IEnumerator TakePlayerLive()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+
+        FindFirstObjectByType<GameSession>().PlayerDie();
+    }
 }

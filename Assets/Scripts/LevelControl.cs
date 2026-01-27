@@ -10,7 +10,7 @@ public class LevelControl : MonoBehaviour
 
     void Start()
     {
-        totalLevel = SceneManager.sceneCount;
+        totalLevel = SceneManager.sceneCountInBuildSettings;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -21,8 +21,10 @@ public class LevelControl : MonoBehaviour
     IEnumerator LoadLevel()
     {
         yield return new WaitForSecondsRealtime(loadDelay);
-
         int curLevel = SceneManager.GetActiveScene().buildIndex;
+        
+        // reset scene persist khi sang level moi
+        FindFirstObjectByType<ScenePersist>().ResetScenePersist();
         SceneManager.LoadScene((curLevel + 1) % totalLevel);
     }
 }

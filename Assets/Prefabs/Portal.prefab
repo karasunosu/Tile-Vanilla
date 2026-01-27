@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4600647235583536321}
   - component: {fileID: 7204928226177553681}
   - component: {fileID: 3443339031800602060}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Portal
   m_TagString: Portal
   m_Icon: {fileID: 0}
@@ -105,6 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd891c4d672529246a4514dfc5898a01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelControl
+  loadDelay: 1
 --- !u!61 &3443339031800602060
 BoxCollider2D:
   m_ObjectHideFlags: 0
