@@ -288,4 +288,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   horizontalFlySpeed: 600
-  verticalFlySpeed: 300
+  verticalFlySpeed: 800
