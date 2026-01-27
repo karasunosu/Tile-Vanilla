@@ -120,6 +120,11 @@ public class PlayerMovement : MonoBehaviour
         isDead = state;
     }
 
+    public bool getDead()
+    {
+        return isDead;
+    }
+
     public CapsuleCollider2D getBodyCollider()
     {
         return bodyCollider;

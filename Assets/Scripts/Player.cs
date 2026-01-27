@@ -22,13 +22,17 @@ public class Player : MonoBehaviour
         time = Time.fixedDeltaTime;
     }
 
+    // Player die
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        if(player.getDead()) { return; }
+
+        if (bodyCollider.IsTouchingLayers(LayerMask.GetMask("Enemy", "Hazard")))
         {
             player.setDead(true);
             animator.SetTrigger("Die");
             rb.linearVelocity = new Vector2(horizontalFlySpeed * time, verticalFlySpeed * time);
         }
     }
+
 }
