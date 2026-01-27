@@ -72,6 +72,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyPhase2 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8888005494564192425, guid: 57969ad006e2eab4fae12df7c4499997, type: 3}
+      propertyPath: m_Size.x
+      value: 0.3445198
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888005494564192425, guid: 57969ad006e2eab4fae12df7c4499997, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.04771498
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
