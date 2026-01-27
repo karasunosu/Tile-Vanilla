@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class CoinPickUp : MonoBehaviour
 {
-    [SerializeField] AudioClip audio;
-
+    [SerializeField] AudioClip audioClip;
 
     bool isPicked;
 
@@ -12,7 +11,7 @@ public class CoinPickUp : MonoBehaviour
         if (collision.CompareTag("Player") && !isPicked)
         {
             isPicked = true;
-            AudioSource.PlayClipAtPoint(audio, gameObject.transform.position);
+            AudioSource.PlayClipAtPoint(audioClip, gameObject.transform.position);
             Destroy(gameObject);
         }
     }

@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714e0e6932c0d674da83c563f6334407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinPickUp
-  audio: {fileID: 8300000, guid: d96a846c499ce1349b2471836b9801ab, type: 3}
+  audioClip: {fileID: 8300000, guid: d96a846c499ce1349b2471836b9801ab, type: 3}
 --- !u!58 &2643149976183352557
 CircleCollider2D:
   m_ObjectHideFlags: 0
